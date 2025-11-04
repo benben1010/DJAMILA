@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Heartbeat for DJAMILA 💓</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: radial-gradient(circle at center, #150f2c 0%, #050713 100%);
+        color: #fff;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        transition: background 0.3s ease;
+      }
+      h1 {
+        font-size: 2em;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        color: #ff8eb5;
+        text-shadow: 0 0 10px #ff6b9a, 0 0 20px #ff6b9a;
+      }
+      p {
+        color: #cbd5e1;
+        margin-bottom: 25px;
+        font-size: 1.1em;
+      }
+      .heart {
+        width: 120px;
+        height: 120px;
+        background: #ff5e96;
+        position: relative;
+        transform: rotate(-45deg);
+        animation: beat 1s infinite ease-in-out;
+        cursor: pointer;
+        box-shadow: 0 0 20px #ff6b9a, 0 0 40px #ff8eb5;
+      }
+      .heart::before,
+      .heart::after {
+        content: '';
+        width: 120px;
+        height: 120px;
+        background: #ff5e96;
+        border-radius: 50%;
+        position: absolute;
+      }
+      .heart::before {
+        top: -60px;
+        left: 0;
+      }
+      .heart::after {
+        top: 0;
+        left: 60px;
+      }
+      @keyframes beat {
+        0%,
+        100% {
+          transform: rotate(-45deg) scale(1);
+        }
+        50% {
+          transform: rotate(-45deg) scale(1.2);
+        }
+      }
+      .floating-heart {
+        position: absolute;
+        bottom: 50px;
+        font-size: 20px;
+        color: #ff6b9a;
+        animation: floatUp 3s ease-out forwards;
+        opacity: 0.9;
+      }
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-400px) scale(1.4);
+          opacity: 0;
+        }
+      }
+      .message {
+        margin-top: 30px;
+        font-size: 1.2em;
+        color: #ffb6d5;
+        min-height: 28px;
+        font-weight: 600;
+        transition: opacity 0.4s ease;
+        opacity: 0;
+        text-shadow: 0 0 5px #ff8eb5;
+      }
+      .message.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DJAMILA 💖</h1>
+    <p>Touch the heart and feel how it beats for you.</p>
+
+    <div class="heart" id="heart"></div>
+    <div class="message" id="message"></div>
+
+    <script>
+      const heart = document.getElementById('heart');
+      const message = document.getElementById('message');
+      const body = document.body;
+
+      const lines = [
+        'Every beat is for you 💓',
+        'You’re my calm and my chaos 💞',
+        'The world stops when I think of you 💫',
+        'You glow brighter than any star 🌹',
+        'My heart whispers only your name, DJAMILA ❤️',
+        'Thinking of you makes my heart race 💖',
+        'You’re my favorite thought of the day 🌸',
+        'If hearts could talk, mine would sing for you 🎶',
+        'You make even the stars jealous of your shine ✨',
+        'Every second without you feels incomplete 🥰',
+        'My heart dances whenever you’re near 💃💓',
+        'You are the melody of my heartbeat 🎵',
+        'Being with you feels like magic 🌟',
+        'I could get lost in your smile forever 😊',
+        'My soul knows its home is with you 🫶',
+        'You turn ordinary moments into poetry ✍️💖',
+      ];
+
+      heart.addEventListener('click', () => {
+        // Background pulse
+        body.style.background =
+          'radial-gradient(circle at center,#2b103f 0%,#050713 100%)';
+        setTimeout(() => {
+          body.style.background =
+            'radial-gradient(circle at center,#150f2c 0%,#050713 100%)';
+        }, 300);
+
+        // Floating hearts
+        for (let i = 0; i < 5; i++) {
+          const floatHeart = document.createElement('div');
+          floatHeart.classList.add('floating-heart');
+          floatHeart.textContent = '💖';
+          floatHeart.style.left = Math.random() * 100 + 'vw';
+          floatHeart.style.animationDuration = 2 + Math.random() * 2 + 's';
+          document.body.appendChild(floatHeart);
+          setTimeout(() => floatHeart.remove(), 3000);
+        }
+
+        // Show random romantic message
+        const line = lines[Math.floor(Math.random() * lines.length)];
+        message.textContent = line;
+        message.classList.add('show');
+        setTimeout(() => message.classList.remove('show'), 2500);
+      });
+    </script>
+  </body>
+</html>
