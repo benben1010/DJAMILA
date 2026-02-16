@@ -1,1 +1,232 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Heartbeat for KHADIDJA 💖</title> <link rel="preconnect" href="https://fonts.googleapis.com"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"> <style> *{margin:0;padding:0;box-sizing:border-box;} body{ font-family:'Poppins',sans-serif; height:100vh; overflow:hidden; background:radial-gradient(circle at center,#0c0c1f 0%,#050510 60%,#000 100%); display:flex; align-items:center; justify-content:center; color:#fff; } /* ===== Falling Pink Heart Snow ===== */ .heart-snow{ position:fixed; top:-10vh; pointer-events:none; user-select:none; z-index:1; animation:fall linear infinite; opacity:0.85; filter:drop-shadow(0 0 8px rgba(255,105,180,0.4)); } @keyframes fall{ 0%{transform:translateY(-10vh) translateX(0) rotate(0deg);} 100%{transform:translateY(110vh) translateX(var(--drift)) rotate(360deg);} } /* ===== Cinematic Intro ===== */ .intro{ position:absolute; inset:0; background:#000; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; animation:introFade 5s forwards; z-index:5; } @keyframes introFade{ 0%,85%{opacity:1;} 100%{opacity:0;visibility:hidden;} } .intro h2{ letter-spacing:0.4em; font-size:0.9rem; opacity:0.6; } .intro h1{ font-size:clamp(2rem,6vw,3rem); margin:20px 0; text-shadow:0 0 20px rgba(255,79,160,0.5); animation:titleZoom 5s ease forwards; } @keyframes titleZoom{ 0%{opacity:0;transform:scale(0.9);} 20%{opacity:1;transform:scale(1);} 100%{transform:scale(1.05);} } .director{ margin-top:20px; letter-spacing:0.3em; font-size:0.9rem; opacity:0.7; } /* ===== Main Card ===== */ .card{ opacity:0; animation:reveal 1.5s ease forwards; animation-delay:4.5s; background:rgba(255,255,255,0.06); backdrop-filter:blur(15px); padding:35px; border-radius:25px; text-align:center; border:1px solid rgba(255,255,255,0.1); z-index:2; } @keyframes reveal{ to{opacity:1;} } .card h3{ font-size:1.8rem; color:#ffb6d5; margin-bottom:10px; text-shadow:0 0 15px rgba(255,79,160,0.5); } .card p{ margin-bottom:20px; color:#cbd5e1; } /* Heart */ .heart{ width:120px; height:120px; margin:0 auto; position:relative; transform:rotate(-45deg); background:linear-gradient(135deg,#ff2f86,#ff7ab8,#ffd3e7); animation:beat 1s infinite ease-in-out; cursor:pointer; box-shadow:0 0 25px rgba(255,79,160,0.6); } .heart::before, .heart::after{ content:""; width:120px; height:120px; position:absolute; border-radius:50%; background:inherit; } .heart::before{top:-60px;} .heart::after{left:60px;} @keyframes beat{ 0%,100%{transform:rotate(-45deg) scale(1);} 50%{transform:rotate(-45deg) scale(1.2);} } .message{ margin-top:25px; min-height:28px; font-weight:600; opacity:0; transition:0.4s; color:#ffd0e6; } .message.show{opacity:1;} .floating-heart{ position:absolute; pointer-events:none; animation:floatUp 3s ease forwards; } @keyframes floatUp{ 0%{transform:translateY(0);opacity:1;} 100%{transform:translateY(-400px);opacity:0;} } </style> </head> <body> <!-- Intro --> <div class="intro"> <h2>A HEARTBEAT STORY</h2> <h1>KHADIDJA 💖</h1> <div class="director">DIRECTED BY HICHEM</div> </div> <!-- Main --> <div class="card"> <h3>KHADIDJA 💖</h3> <p>Touch the heart and feel how it beats for you.</p> <div class="heart" id="heart"></div> <div class="message" id="message"></div> <audio id="boom" src="cinematic-boom.mp3" preload="auto"></audio> <audio id="beatSound" src="heartbeat.mp3" preload="auto"></audio> </div> <script> const heart = document.getElementById("heart"); const message = document.getElementById("message"); const beatSound = document.getElementById("beatSound"); const boom = document.getElementById("boom"); const lines=[ "Every beat is for you 💓", "You’re my calm and my chaos 💞", "The world stops when I think of you 💫", "My heart whispers only your name ❤️", "You are my favorite thought 🥰" ]; /* Cinematic boom */ window.addEventListener("load",()=>{ setTimeout(()=>{ boom.play().catch(()=>{}); },500); }); /* Falling Pink Hearts Snow */ function createHeartSnow(){ const heart=document.createElement("div"); heart.classList.add("heart-snow"); heart.textContent="💗"; heart.style.left=Math.random()*100+"vw"; const size=12+Math.random()*28; heart.style.fontSize=size+"px"; const duration=6+Math.random()*8; heart.style.animationDuration=duration+"s"; const drift=Math.random()*200-100; heart.style.setProperty("--drift",drift+"px"); heart.style.filter+=` blur(${Math.random()*2}px)`; document.body.appendChild(heart); setTimeout(()=>heart.remove(),duration*1000); } setInterval(createHeartSnow,300); /* Heart Click */ heart.addEventListener("click",()=>{ beatSound.currentTime=0; beatSound.play().catch(()=>{}); const line=lines[Math.floor(Math.random()*lines.length)]; message.textContent=line; message.classList.add("show"); setTimeout(()=>message.classList.remove("show"),2500); for(let i=0;i<8;i++){ const el=document.createElement("div"); el.className="floating-heart"; el.textContent="💖"; el.style.left=Math.random()*100+"vw"; el.style.top="60%"; el.style.fontSize=(16+Math.random()*20)+"px"; document.body.appendChild(el); setTimeout(()=>el.remove(),3000); } }); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Heartbeat for FULLA 💓</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at center,#080816 0%,#05050d 60%,#000 100%);
+  color:#fff;
+  height:100vh;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+}
+
+/* ===== INTRO SCREEN ===== */
+
+.intro{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  background:#000;
+  z-index:10;
+  animation:introFade 5s forwards;
+}
+
+@keyframes introFade{
+  0%{opacity:1;}
+  85%{opacity:1;}
+  100%{opacity:0;visibility:hidden;}
+}
+
+.intro h2{
+  letter-spacing:0.4em;
+  font-size:0.9rem;
+  color:rgba(255,255,255,0.6);
+  margin-bottom:15px;
+}
+
+.intro h1{
+  font-size:clamp(2.2rem,6vw,3.2rem);
+  letter-spacing:0.08em;
+  text-shadow:0 0 20px rgba(255,79,160,0.4);
+  margin-bottom:15px;
+  animation:titleZoom 5s ease forwards;
+}
+
+@keyframes titleZoom{
+  0%{opacity:0;transform:scale(0.9);}
+  20%{opacity:1;transform:scale(1);}
+  80%{opacity:1;}
+  100%{opacity:1;transform:scale(1.05);}
+}
+
+.intro .director{
+  margin-top:25px;
+  font-size:0.95rem;
+  letter-spacing:0.25em;
+  color:rgba(255,255,255,0.7);
+  animation:directorFade 5s ease forwards;
+}
+
+@keyframes directorFade{
+  0%{opacity:0;transform:translateY(10px);}
+  30%{opacity:1;transform:translateY(0);}
+  85%{opacity:1;}
+  100%{opacity:0;}
+}
+
+/* ===== MAIN CARD ===== */
+
+.card{
+  opacity:0;
+  animation:contentReveal 1.5s ease forwards;
+  animation-delay:4.5s;
+  width:min(500px,95vw);
+  padding:35px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
+  text-align:center;
+}
+
+@keyframes contentReveal{
+  to{opacity:1;transform:translateY(0);}
+}
+
+h3{
+  font-size:1.8rem;
+  margin-bottom:10px;
+  color:#ffb6d5;
+  text-shadow:0 0 15px rgba(255,79,160,0.4);
+}
+
+p{
+  margin-bottom:20px;
+  color:#cbd5e1;
+}
+
+/* Heart */
+
+.heart{
+  width:120px;
+  height:120px;
+  margin:0 auto;
+  position:relative;
+  transform:rotate(-45deg);
+  background:linear-gradient(135deg,#ff2f86,#ff7ab8,#ffd3e7);
+  animation:beat 1s infinite ease-in-out;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,79,160,0.5);
+}
+
+.heart::before,
+.heart::after{
+  content:"";
+  width:120px;
+  height:120px;
+  position:absolute;
+  border-radius:50%;
+  background:inherit;
+}
+
+.heart::before{top:-60px;left:0;}
+.heart::after{left:60px;top:0;}
+
+@keyframes beat{
+  0%,100%{transform:rotate(-45deg) scale(1);}
+  50%{transform:rotate(-45deg) scale(1.18);}
+}
+
+.message{
+  margin-top:25px;
+  min-height:28px;
+  font-weight:600;
+  opacity:0;
+  transition:0.4s ease;
+  color:#ffd0e6;
+}
+
+.message.show{
+  opacity:1;
+}
+
+.floating-heart{
+  position:absolute;
+  pointer-events:none;
+  animation:floatUp 3s ease forwards;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-400px);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Cinematic Intro -->
+<div class="intro" id="intro">
+  <div>
+    <h2>A HEARTBEAT STORY</h2>
+    <h1>KHADIDJA 💖</h1>
+    <div class="director">DIRECTED BY HICHEM</div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="card">
+  <h3>KHADIDJA 💖</h3>
+  <p>Touch the heart and feel how it beats for you.</p>
+  <div class="heart" id="heart"></div>
+  <div class="message" id="message"></div>
+  <audio id="boom" src="cinematic-boom.mp3" preload="auto"></audio>
+  <audio id="beatSound" src="heartbeat.mp3" preload="auto"></audio>
+</div>
+
+<script>
+const heart = document.getElementById("heart");
+const message = document.getElementById("message");
+const beatSound = document.getElementById("beatSound");
+const boom = document.getElementById("boom");
+
+const lines = [
+"Every beat is for you 💓",
+"You’re my calm and my chaos 💞",
+"The world stops when I think of you 💫",
+"My heart whispers only your name ❤️",
+"You are my favorite thought 🥰"
+];
+
+window.addEventListener("load",()=>{
+  setTimeout(()=>{ boom.play().catch(()=>{}); },500);
+});
+
+heart.addEventListener("click",()=>{
+  beatSound.currentTime=0;
+  beatSound.play().catch(()=>{});
+  
+  const line = lines[Math.floor(Math.random()*lines.length)];
+  message.textContent=line;
+  message.classList.add("show");
+  setTimeout(()=>message.classList.remove("show"),2500);
+
+  for(let i=0;i<8;i++){
+    const el=document.createElement("div");
+    el.className="floating-heart";
+    el.textContent="💖";
+    el.style.left=Math.random()*100+"vw";
+    el.style.top="60%";
+    el.style.fontSize=(16+Math.random()*20)+"px";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),3000);
+  }
+});
+</script>
+
+</body>
+</html>
